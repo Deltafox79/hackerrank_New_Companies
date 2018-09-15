@@ -36,23 +36,23 @@ namespace Companies
             commandDatabase.CommandTimeout = 60;
             //Inizializzo la variabile Reader
             MySqlDataReader reader;
-            //sezione try/Catch per evntuali errori
+            //sezione Try/Catch per eventuali errori
             try
             {
-                //Apro la connesisone con Il database locale
+                //Apro la connessione con il database locale
                 databaseConnection.Open();
                 //Eseguo la query
                 reader = commandDatabase.ExecuteReader();
-                //Verifico se in risposta ho colonne
+                //Verifico se in risposta ho dati
                 if (reader.HasRows)
                 {
                     //Inizio il ciclo while sulla variabile reader per verificare tutte le possibili risposte in ritorno
                     while (reader.Read())
                     {
-                        //Ciclo for su tutti i valori ottenuti dalla query ed richiedo il relativo numero di colonne
+                        //Ciclo for su tutti i valori ottenuti dalla query ne richiedo il relativo numero di campi
                         for (int i = 0; i < reader.FieldCount; i++)
-                            Console.Write(reader.GetString(i) + " "); // Printo a video i valori Ottenuti in linea
-                        Console.WriteLine("");
+                            Console.Write(reader.GetString(i) + " "); // Printo a video i valori ottenuti in linea
+                        Console.WriteLine("");//linea vuota 
                     }
                 }
                 else
@@ -62,6 +62,7 @@ namespace Companies
                 }
                 //Chiudo la connessione con il Database Locale
                 databaseConnection.Close();
+                //Attendo Input da parte Utente per chiudere la win della Console
                 Console.ReadLine();
             }
             catch (Exception ex)
